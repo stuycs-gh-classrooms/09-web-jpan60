@@ -30,22 +30,22 @@ def draw_koch(t, depth, length):
 
 
 #SPECIAL KOCH DRAWER
-        #dilation factor parameter
+        #modified angles at which turtle turns, and added width parameter 
+        #conjoins koch snowflakes, and creates a turtle shaped koch curve at depth 4!
         
-def draw_spesh_koch (t, depth, length):
+def draw_spesh_koch (t, depth, length, width):
     if depth > 1: 
-        draw_koch(t, depth - 1, length)
-        t.lt(60)
-        draw_koch(t, depth - 1, length)
-        t.rt(120)
-        draw_koch(t, depth - 1, length)
-        t.lt(60)
-        draw_koch(t, depth - 1, length) 
+        draw_koch(t, depth - 1, length, width * 2)
+        t.lt(240)
+        draw_koch(t, depth - 1, length, width * 2)
+        t.rt(60)
+        draw_koch(t, depth - 1, length, width * 2)
+        t.lt(240)
+        draw_koch(t, depth - 1, length, width * 2) 
     else:
         t.fd(length)
     
-    
-draw_spesh_koch(mozart, 4, 10)
+draw_spesh_koch(mozart, 4, 15)
 
 #SIERPINSKI DRAWER
         
@@ -76,8 +76,21 @@ def draw_sierpinski(t, depth, length):
 
 #SPECIAL SIERPINKSKI DRAWER
         
-#def draw_spesh_sierpinski(t, depth, length):
-    
+def draw_spesh_sierpinski(t, depth, length):
+    if depth == 1:
+        triangle(t, length)
+    else:
+        draw_sierpinski(t, depth - 1, length / 2)  
+        t.fd(length / 2)
+        draw_sierpinski(t, depth - 1, length / 2)
+        t.bk(length / 2)
+        t.lt(60)
+        t.fd(length / 2)
+        t.rt(60)
+        draw_sierpinski(t, depth - 1, length / 2)  
+        t.rt(120)
+        t.fd(length / 2)
+        t.lt(120)
 
 #FRACTAL TREE DRAWER
         
