@@ -25,9 +25,11 @@ def draw_koch(t, depth, length):
 #SPECIAL KOCH DRAWER
         #modified angles at which turtle turns; instead of turning 60  degrees after depth 1, the turtle turns 240 degrees, then 60, then 240 again. 
         #conjoins koch snowflakes, and creates a turtle shaped koch curve!
+        #alternates colors between red and blue
         
 def draw_spesh_koch (t, depth, length):
-    if depth > 1: 
+    if depth > 1:
+        t.pencolor("blue")
         draw_koch(t, depth - 1, length)
         t.lt(240)
         draw_koch(t, depth - 1, length)
@@ -36,9 +38,10 @@ def draw_spesh_koch (t, depth, length):
         t.lt(240)
         draw_koch(t, depth - 1, length) 
     else:
+        t.pencolor("red")
         t.fd(length)
     
-draw_spesh_koch(mozart, 6, 5)
+draw_spesh_koch(mozart, 4, 5)
 
 #SIERPINSKI DRAWER
         
@@ -68,23 +71,28 @@ def draw_sierpinski(t, depth, length):
         t.lt(120)
 
 #SPECIAL SIERPINKSKI DRAWER
-        #
+        #assigns colors to a triangle at different depths
         
 def draw_spesh_sierpinski(t, depth, length):
     if depth == 1:
         triangle(t, length)
     else:
+        t.pencolor("red")
         draw_sierpinski(t, depth - 1, length / 2)  
         t.fd(length / 2)
+        t.pencolor("blue")
         draw_sierpinski(t, depth - 1, length / 2)
         t.bk(length / 2)
         t.lt(60)
         t.fd(length / 2)
         t.rt(60)
+        t.pencolor("green")
         draw_sierpinski(t, depth - 1, length / 2)  
         t.rt(120)
         t.fd(length / 2)
         t.lt(120)
+
+draw_spesh_sierpinski(mozart, 4, 50)
 
 #FRACTAL TREE DRAWER
         
@@ -102,20 +110,21 @@ def tree(t, depth, length, angle):
         t.bk(length)
         
 #SPECIAL TREE DRAWER
-        #this modified function will randomly change square or square root the angle of the branches of the tree
-        
-def spesh_tree(t, depth, length, angle):
+    #random length of branches and random angle
+    
+def spesh_tree(t, depth, length):
     if depth == 1:
         t.fd(length)
         t.bk(length)
     else:
-        angle_rand = random.randrange(angle ** 1/2, angle ** 2)
-        t.fd(length)
-        t.rt(angle)
-        tree(t, depth - 1, length, angle)
-        t.lt(angle * 2)
-        tree(t, depth - 1, length, angle)
-        t.rt(angle)
-        t.bk(length)
+        random_length = length * random.randint(0, 10)
+        random_angle = random.randint (0, 45)
+        t.fd(random_length)
+        t.rt(random_angle)
+        tree(t, depth - 1, random_length, random_angle)
+        t.lt(random_angle * 2)
+        tree(t, depth - 1, random_length, random_angle)
+        t.rt(random_angle)
+        t.bk(random_length)
 
-    
+spesh_tree(mozart, 4, 3)
