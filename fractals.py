@@ -3,16 +3,9 @@ import random
 window = turtle.Screen ()
 window.setup(600, 600)
 
-#koch
 mozart = turtle.Turtle()
 mozart.pd()
-#sierPINKsi
-bach = turtle.Turtle()
-bach.pd()
-#treee
-beethoven = turtle.Turtle()
-beethoven.pd()
-beethoven.lt(90)
+mozart.lt(90)
 
 #KOCH DRAWER
 
@@ -30,22 +23,22 @@ def draw_koch(t, depth, length):
 
 
 #SPECIAL KOCH DRAWER
-        #modified angles at which turtle turns, and added width parameter 
-        #conjoins koch snowflakes, and creates a turtle shaped koch curve at depth 4!
+        #modified angles at which turtle turns; instead of turning 60  degrees after depth 1, the turtle turns 240 degrees, then 60, then 240 again. 
+        #conjoins koch snowflakes, and creates a turtle shaped koch curve!
         
-def draw_spesh_koch (t, depth, length, width):
+def draw_spesh_koch (t, depth, length):
     if depth > 1: 
-        draw_koch(t, depth - 1, length, width * 2)
+        draw_koch(t, depth - 1, length)
         t.lt(240)
-        draw_koch(t, depth - 1, length, width * 2)
+        draw_koch(t, depth - 1, length)
         t.rt(60)
-        draw_koch(t, depth - 1, length, width * 2)
+        draw_koch(t, depth - 1, length)
         t.lt(240)
-        draw_koch(t, depth - 1, length, width * 2) 
+        draw_koch(t, depth - 1, length) 
     else:
         t.fd(length)
     
-draw_spesh_koch(mozart, 4, 15)
+draw_spesh_koch(mozart, 6, 5)
 
 #SIERPINSKI DRAWER
         
@@ -75,6 +68,7 @@ def draw_sierpinski(t, depth, length):
         t.lt(120)
 
 #SPECIAL SIERPINKSKI DRAWER
+        #
         
 def draw_spesh_sierpinski(t, depth, length):
     if depth == 1:
@@ -123,6 +117,5 @@ def spesh_tree(t, depth, length, angle):
         tree(t, depth - 1, length, angle)
         t.rt(angle)
         t.bk(length)
-        
-spesh_tree(beethoven, 5, 20, 20)
+
     
