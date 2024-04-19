@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Jamie Pan Period 9: Fractals!</title>
+  </head>
+
+  <body>
+  <h1>Fractals!</h1>
+  <div>
+  <h2>Koch Curve</h2>
+  <p>Original Koch Curve
+  <code>draw_koch(mozart, 4, 20)</code>
+  </p>
+  <img src="og_koch">
+  <p>Modified Koch Curve
+  The angles at which the turtle turns are modified, leading the turtle to create a turtle shaped koch curve!</p>
+  <img src="koch_mozart_4_5">
+  <pre>
+  <code>
+  def draw_spesh_koch (t, depth, length):
+    if depth > 1:
+        t.pencolor("blue")
+        draw_koch(t, depth - 1, length)
+        t.lt(240)
+        draw_koch(t, depth - 1, length)
+        t.rt(60)
+        draw_koch(t, depth - 1, length)
+        t.lt(240)
+        draw_koch(t, depth - 1, length)
+    else:
+        t.pencolor("red")
+        t.fd(length)
+      </code>
+    </pre>
+  </div>
+
+  <div>
+  <h2>Sierpinski Triangle</h2>
+  <p>Original Sierpinski Triangle <code>draw_sierpinski(mozart, 4, 30)</code>
+  </p>
+  <img src="og_sierp">
+  <p>Modified Sierpinski Triangle
+  The modified version assigns a color to each triangle at a different depth.
+  <img src="sierp_moz_4_50">
+  <pre>
+  <code>
+  def draw_spesh_sierpinski(t, depth, length):
+    if depth == 1:
+        triangle(t, length)
+    else:
+        t.pencolor("red")
+        draw_sierpinski(t, depth - 1, length / 2)
+        t.fd(length / 2)
+        t.pencolor("blue")
+        draw_sierpinski(t, depth - 1, length / 2)
+        t.bk(length / 2)
+        t.lt(60)
+        t.fd(length / 2)
+        t.rt(60)
+        t.pencolor("green")
+        draw_sierpinski(t, depth - 1, length / 2)
+        t.rt(120)
+        t.fd(length / 2)
+        t.lt(120)
+      </code>
+    </pre>
+  </div>
+
+  <div>
+  <h2>Fractal Tree</h2>
+  <p>Original Fractal Tree
+  <code>tree(t, 4, 50, 30)</code>
+  </p>
+  <img src="og_tree">
+  <p>Modified Fractal Tree
+  The modified version assigns a random length and random angle of the branches of the tree.
+  <pre><code>
+  def spesh_tree(t, depth, length):
+    if depth == 1:
+        t.fd(length)
+        t.bk(length)
+    else:
+        random_length = length * random.randint(0, 10)
+        random_angle = random.randint (0, 45)
+        t.fd(random_length)
+        t.rt(random_angle)
+        tree(t, depth - 1, random_length, random_angle)
+        t.lt(random_angle * 2)
+        tree(t, depth - 1, random_length, random_angle)
+        t.rt(random_angle)
+        t.bk(random_length)
+      </code>
+    </pre>
+  </div>
+
+</body>
+</html>
